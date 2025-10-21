@@ -15,22 +15,24 @@ from pathlib import Path
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import Command, StateFilter
 from aiogram.types import WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.storage.memory import MemoryStorage
 
 # ============= НАСТРОЙКИ =============
 # !!! ВАЖНО: Замените на ваши данные
-API_TOKEN = "ВАШ_ТОКЕН_БОТА"  # Получить у @BotFather
-GROUP_ID = -1234567890  # ID группы для заказов (узнать у @userinfobot)
-ADMIN_IDS = [123456789]  # ID администраторов (узнать у @userinfobot)
+API_TOKEN = "7705846893:AAFkZQYuAcaxXwi40511X8BAy3f-XOw5_Ts"  # Получить у @BotFather
+GROUP_ID = -4923899055  # ID группы для заказов (узнать у @userinfobot)
+ADMIN_IDS = [5186803258, 467876266]  # ID администраторов (узнать у @userinfobot)
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
 
 # Инициализация бота и диспетчера
 storage = MemoryStorage()
-bot = Bot(token=API_TOKEN)
+bot = Bot(token=API_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher(storage=storage)
 
 # Путь к файлам проекта
