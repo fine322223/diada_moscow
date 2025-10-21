@@ -536,6 +536,16 @@ async def edit_product_value(message: types.Message, state: FSMContext):
     elif field == 'image':
         if message.photo:
             try:
+                # Удаляем старое фото, если оно существует
+                old_image_url = product.get('image', '')
+                if old_image_url and 'images/products/' in old_image_url:
+                    old_file_name = old_image_url.split('/')[-1]
+                    old_file_path = IMAGES_DIR / old_file_name
+                    if old_file_path.exists():
+                        old_file_path.unlink()
+                        logging.info(f"🗑 Удалено старое изображение: {old_file_name}")
+                
+                # Сохраняем новое фото
                 photo = message.photo[-1]
                 timestamp = int(time.time())
                 file_name = f"product_{product_id}_{timestamp}.jpg"
@@ -685,5 +695,4 @@ async def debug_all_messages(message: types.Message):
 
 if __name__ == "__main__":
     print("🚀 Diada Moscow Bot запущен!")
-    print("⚠️  Не забудьте изменить API_TOKEN, GROUP_ID и ADMIN_IDS в коде!")
     asyncio.run(dp.start_polling(bot, skip_updates=True))
