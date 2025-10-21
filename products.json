@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "1",
+    "name": "Хз",
+    "price": 3.0,
+    "description": "Хз",
+    "image": "https://fine322223.github.io/diada_moscow/images/products/product_1_1761051798.jpg"
+  }
+]
