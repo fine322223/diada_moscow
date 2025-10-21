@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "1",
+    "name": "Diada White",
+    "price": 7500.0,
+    "description": "Размер М, цвет: белый",
+    "image": "https://fine322223.github.io/diada_moscow/images/products/product_1_1761087846.jpg"
+  }
+]
