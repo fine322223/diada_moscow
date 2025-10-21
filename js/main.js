@@ -18,7 +18,7 @@ let products = [];
 let cart = [];
 
 // URL к файлу с товарами на GitHub
-const PRODUCTS_URL = 'https://raw.githubusercontent.com/fine322223/diada_moscow/main/products.json';
+const PRODUCTS_URL = 'https://fine322223.github.io/diada_moscow/products.json';
 
 // Функция отправки заказа
 function submitOrder() {
