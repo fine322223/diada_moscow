@@ -1,27 +1,112 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diada Moscow</title>
-    <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Diada Moscow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Diada Moscow</h1>
-    </header>
-    
-    <main>
-        <section>
-            <h2>Добро пожаловать</h2>
-            <p>Содержимое страницы</p>
-        </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2025 Diada Moscow</p>
-    </footer>
-    
-    <script src="js/script.js"></script>
+  <!-- Шапка сайта -->
+  <div class="header">
+    <h1>Diada Moscow</h1>
+  </div>
+  
+  <!-- Поисковая строка -->
+  <div class="search">
+    <input type="text" id="search" placeholder="Поиск товаров...">
+    <button id="hide-keyboard-btn" class="hide-keyboard-btn" title="Скрыть клавиатуру">⌨️</button>
+  </div>
+
+  <!-- Фильтры -->
+  <div class="filters">
+    <button id="sort-btn">Сортировка</button>
+    <button id="filter-btn">Фильтр</button>
+  </div>
+
+  <!-- Сетка товаров -->
+  <div class="products" id="product-list"></div>
+
+  <!-- Кнопка корзины -->
+  <button class="cart" id="cart-btn">
+    🛒 Корзина (<span id="cart-count">0</span>)
+  </button>
+
+  <!-- Модальное окно сортировки -->
+  <div id="sort-modal" class="hidden modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Сортировка</h2>
+        <button class="close-btn" onclick="closeSort()">&times;</button>
+      </div>
+      <div class="button-group">
+        <button class="btn btn-primary" onclick="applySort('asc')">По возрастанию цены</button>
+        <button class="btn btn-primary" onclick="applySort('desc')">По убыванию цены</button>
+        <button class="btn btn-secondary" onclick="closeSort()">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно фильтра -->
+  <div id="filter-modal" class="hidden modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Фильтр по цене</h2>
+        <button class="close-btn" onclick="closeFilter()">&times;</button>
+      </div>
+      <div class="form-group">
+        <input class="form-input" id="min-price" placeholder="Минимальная цена" type="number">
+      </div>
+      <div class="form-group">
+        <input class="form-input" id="max-price" placeholder="Максимальная цена" type="number">
+      </div>
+      <div class="button-group">
+        <button class="btn btn-primary" onclick="applyFilter()">Применить</button>
+        <button class="btn btn-secondary" onclick="closeFilter()">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно корзины -->
+  <div id="cart-modal" class="hidden modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Корзина</h2>
+        <button class="close-btn" onclick="closeCart()">&times;</button>
+      </div>
+      <div id="cart-items"></div>
+      <div class="button-group">
+        <button class="btn btn-primary" id="checkout-btn">Оформить заказ</button>
+        <button class="btn btn-secondary" onclick="closeCart()">Продолжить покупки</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно оформления заказа -->
+  <div id="checkout-modal" class="hidden modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Контактные данные</h2>
+        <button class="close-btn" onclick="closeCheckout()">&times;</button>
+      </div>
+      <div class="form-group">
+        <input class="form-input" id="name" placeholder="Имя">
+      </div>
+      <div class="form-group">
+        <input class="form-input" id="phone" placeholder="Телефон" type="tel">
+      </div>
+      <div class="form-group">
+        <input class="form-input" id="address" placeholder="Адрес доставки">
+      </div>
+      <div class="button-group">
+        <button class="btn btn-primary" id="submit-order-btn">ОФОРМИТЬ ЗАКАЗ</button>
+        <button class="btn btn-secondary" onclick="closeCheckout()">Назад</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
