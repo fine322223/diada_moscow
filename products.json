@@ -5,5 +5,12 @@
     "price": 7500.0,
     "description": "Размер М, цвет: белый",
     "image": "https://fine322223.github.io/diada_moscow/images/products/product_1_1761087846.jpg"
+  },
+  {
+    "id": "2",
+    "name": "Diada Black",
+    "price": 7500.0,
+    "description": "Размер М, цвет: черный",
+    "image": "https://fine322223.github.io/diada_moscow/images/products/product_2_1761087884.jpg"
   }
 ]
