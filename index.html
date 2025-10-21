@@ -11,17 +11,18 @@
 <body>
   <!-- Загрузочный экран -->
   <div class="loader" id="loader">
-    <img src="logo.jpg" class="loader-logo" alt="Loading">
+    <img src="logo.PNG" class="loader-logo" alt="Loading">
   </div>
 
   <!-- Шапка сайта -->
   <div class="header">
-    <img src="logo.jpg" class="header-logo" alt="Diada Moscow">
+    <img src="logo.PNG" class="header-logo" alt="Diada Moscow">
+    <h1 class="header-title">DIADA.MOSCOW</h1>
   </div>
   
   <!-- Поисковая строка -->
   <div class="search">
-    <input type="text" id="search" placeholder="Поиск товаров...">
+    <input type="text" id="search" placeholder="Поиск...">
     <button id="hide-keyboard-btn" class="hide-keyboard-btn" title="Скрыть клавиатуру">⌨️</button>
   </div>
 
@@ -36,7 +37,7 @@
 
   <!-- Кнопка корзины -->
   <button class="cart" id="cart-btn">
-    🛒 Корзина (<span id="cart-count">0</span>)
+    Корзина (<span id="cart-count">0</span>)
   </button>
 
   <!-- Модальное окно сортировки -->
@@ -122,7 +123,7 @@
         setTimeout(function() {
           loader.style.display = 'none';
         }, 500);
-      }, 800);
+      }, 3000);
     });
   </script>
 </body>
