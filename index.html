@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <!-- Загрузочный экран -->
+  <div class="loader" id="loader">
+    <img src="logo.jpg" class="loader-logo" alt="Loading">
+  </div>
+
   <!-- Шапка сайта -->
   <div class="header">
     <img src="logo.jpg" class="header-logo" alt="Diada Moscow">
@@ -108,5 +113,17 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script>
+    // Скрываем загрузчик после загрузки страницы
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loader = document.getElementById('loader');
+        loader.style.opacity = '0';
+        setTimeout(function() {
+          loader.style.display = 'none';
+        }, 500);
+      }, 800);
+    });
+  </script>
 </body>
 </html>
