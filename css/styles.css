@@ -6,26 +6,86 @@
 /* Основные стили страницы */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: #ffffff;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
   margin: 0;
   padding: 0;
-  color: #000000;
+  color: #ffffff;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
 
+/* Загрузчик с вращающимся логотипом */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-logo {
+  width: 150px;
+  height: 150px;
+  animation: spin 2s linear infinite, shimmer 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px #ff0000) drop-shadow(0 0 40px #ff0000);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    filter: brightness(1) contrast(1) drop-shadow(0 0 20px #ff0000);
+  }
+  50% {
+    filter: brightness(1.5) contrast(1.2) drop-shadow(0 0 40px #ff0000) drop-shadow(0 0 60px #ffffff);
+  }
+}
+
 /* Стили шапки */
 .header {
-  background: #000000;
+  background: linear-gradient(135deg, #000000 0%, #1a0000 100%);
   color: #ffffff;
-  padding: 30px 20px;
+  padding: 20px;
   text-align: center;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 3px solid #ff0000;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 30px rgba(255, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.header-logo {
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0 0 10px #ff0000);
+  transition: transform 0.3s;
+}
+
+.header-logo:hover {
+  transform: rotate(20deg) scale(1.1);
 }
 
 .header h1 {
@@ -36,6 +96,21 @@ body {
   text-transform: uppercase;
   position: relative;
   display: inline-block;
+  background: linear-gradient(135deg, #ffffff 0%, #ff0000 50%, #ffffff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: metallic 3s ease-in-out infinite;
+}
+
+@keyframes metallic {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .header h1::after {
@@ -45,48 +120,58 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 50px;
-  height: 1px;
-  background: #ffffff;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff0000, transparent);
 }
 
 /* Поисковая строка */
 .search {
   padding: 20px;
-  background: #f8f8f8;
+  background: #1a1a1a;
   display: flex;
   gap: 10px;
   align-items: center;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 2px solid #ff0000;
 }
 
 #search {
   flex: 1;
   padding: 14px 20px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #ff0000;
   border-radius: 0;
   font-size: 14px;
   font-family: 'Inter', sans-serif;
-  transition: border-color 0.3s;
+  background: #000000;
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+#search::placeholder {
+  color: #666666;
 }
 
 #search:focus {
   outline: none;
-  border-color: #000000;
+  border-color: #ff0000;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
 }
 
 .hide-keyboard-btn {
   padding: 14px 18px;
-  background: #000000;
+  background: linear-gradient(135deg, #ff0000, #aa0000);
   color: #ffffff;
   border: none;
   border-radius: 0;
   font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
 }
 
 .hide-keyboard-btn:hover {
-  background: #333333;
+  background: linear-gradient(135deg, #aa0000, #ff0000);
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
+  transform: translateY(-2px);
 }
 
 /* Фильтры */
@@ -94,16 +179,16 @@ body {
   display: flex;
   gap: 16px;
   padding: 20px;
-  background: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
+  background: #1a1a1a;
+  border-bottom: 2px solid #ff0000;
   justify-content: center;
 }
 
 .filters button {
   padding: 12px 28px;
-  border: 2px solid #000000;
-  background: #ffffff;
-  color: #000000;
+  border: 2px solid #ff0000;
+  background: transparent;
+  color: #ff0000;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -122,7 +207,7 @@ body {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: #000000;
+  background: #ff0000;
   transform: translate(-50%, -50%);
   transition: width 0.6s, height 0.6s;
   z-index: -1;
@@ -130,8 +215,9 @@ body {
 }
 
 .filters button:hover {
-  background: #000000;
+  background: #ff0000;
   color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
 }
 
 .filters button:hover::before {
@@ -162,8 +248,8 @@ body {
 
 /* Стили карточки товара */
 .product {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  border: 2px solid #ff0000;
   border-radius: 0;
   overflow: hidden;
   display: flex;
@@ -179,16 +265,17 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  border: 2px solid #000000;
+  border: 3px solid #ff0000;
   opacity: 0;
   transition: opacity 0.3s;
   pointer-events: none;
   z-index: 1;
+  box-shadow: inset 0 0 30px rgba(255, 0, 0, 0.3);
 }
 
 .product:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 60px rgba(255, 0, 0, 0.4), 0 0 40px rgba(255, 0, 0, 0.2);
 }
 
 .product:hover::before {
@@ -198,10 +285,10 @@ body {
 .product-image {
   width: 100%;
   padding-bottom: 100%;
-  background: #f8f8f8;
+  background: #000000;
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 2px solid #ff0000;
 }
 
 .product-image::before {
@@ -246,8 +333,8 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   flex-grow: 1;
-  border-top: 1px solid #f0f0f0;
-  background: linear-gradient(to bottom, #fafafa, #ffffff);
+  border-top: 2px solid #ff0000;
+  background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
 }
 
 .product-details {
@@ -261,8 +348,8 @@ body {
   left: 0;
   top: -5px;
   width: 30px;
-  height: 1px;
-  background: #000000;
+  height: 2px;
+  background: linear-gradient(90deg, #ff0000, transparent);
 }
 
 .product-name {
@@ -270,9 +357,10 @@ body {
   font-size: 13px;
   font-weight: 500;
   line-height: 1.6;
-  color: #000000;
+  color: #ffffff;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }
 
 .product-description {
@@ -280,19 +368,20 @@ body {
   font-size: 11px;
   font-weight: 400;
   line-height: 1.5;
-  color: #666666;
+  color: #999999;
   letter-spacing: 0.03em;
   font-style: italic;
 }
 
 .product-price {
   margin: 0;
-  color: #000000;
-  font-weight: 300;
+  color: #ff0000;
+  font-weight: 600;
   font-size: 17px;
   letter-spacing: 0.05em;
   position: relative;
   display: inline-block;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
 }
 
 .product-price::before {
@@ -303,8 +392,8 @@ body {
 
 /* Кнопка добавления в корзину */
 .add-to-cart {
-  background: #000000;
-  border: 2px solid #000000;
+  background: linear-gradient(135deg, #ff0000, #aa0000);
+  border: 2px solid #ff0000;
   width: 46px;
   height: 46px;
   border-radius: 0;
@@ -319,6 +408,7 @@ body {
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
 }
 
 .add-to-cart::before {
@@ -341,7 +431,9 @@ body {
 }
 
 .add-to-cart:hover {
-  color: #000000;
+  color: #ff0000;
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
+  transform: scale(1.1);
 }
 
 .add-to-cart span {
@@ -354,9 +446,9 @@ body {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  background: #000000;
+  background: linear-gradient(135deg, #ff0000, #aa0000);
   color: #ffffff;
-  border: 2px solid #000000;
+  border: 2px solid #ff0000;
   padding: 16px 28px;
   border-radius: 0;
   font-size: 15px;
@@ -364,7 +456,7 @@ body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 30px rgba(255, 0, 0, 0.5);
   transition: all 0.3s ease;
   z-index: 50;
   position: relative;
@@ -388,8 +480,9 @@ body {
 
 .cart:hover {
   background: #ffffff;
-  color: #000000;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  color: #ff0000;
+  box-shadow: 0 10px 40px rgba(255, 0, 0, 0.7);
+  transform: translateY(-4px);
 }
 
 .cart:hover::before {
@@ -399,6 +492,14 @@ body {
 #cart-count {
   font-weight: 600;
   padding: 0 4px;
+  background: #000000;
+  border-radius: 50%;
+  min-width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
 }
 
 /* Стили модальных окон */
@@ -408,7 +509,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -418,16 +519,16 @@ body {
 }
 
 .modal-content {
-  background: #ffffff;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
   border-radius: 0;
   padding: 40px;
   width: 100%;
   max-width: 500px;
   max-height: 80vh;
   overflow: auto;
-  border: 2px solid #000000;
+  border: 3px solid #ff0000;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 80px rgba(255, 0, 0, 0.5), inset 0 0 60px rgba(255, 0, 0, 0.1);
 }
 
 .modal-content::before {
@@ -437,7 +538,7 @@ body {
   left: 15px;
   right: 15px;
   bottom: 15px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(255, 0, 0, 0.3);
   pointer-events: none;
 }
 
@@ -447,17 +548,18 @@ body {
   align-items: center;
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 2px solid #ff0000;
 }
 
 .modal-title {
   margin: 0;
-  color: #000000;
+  color: #ffffff;
   font-size: 1.2rem;
   font-weight: 300;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   position: relative;
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
 }
 
 .modal-title::after {
@@ -466,18 +568,18 @@ body {
   bottom: -10px;
   left: 0;
   width: 40px;
-  height: 1px;
-  background: #000000;
+  height: 2px;
+  background: linear-gradient(90deg, #ff0000, transparent);
 }
 
 .close-btn {
   background: transparent;
-  border: 2px solid #000000;
+  border: 2px solid #ff0000;
   width: 36px;
   height: 36px;
   font-size: 24px;
   cursor: pointer;
-  color: #000000;
+  color: #ff0000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -486,9 +588,10 @@ body {
 }
 
 .close-btn:hover {
-  background: #000000;
+  background: #ff0000;
   color: #ffffff;
   transform: rotate(90deg);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
 }
 
 /* Элементы корзины */
@@ -498,20 +601,21 @@ body {
   align-items: center;
   padding: 16px;
   margin-bottom: 12px;
-  background: #f8f8f8;
-  border-left: 2px solid #000000;
+  background: rgba(255, 0, 0, 0.1);
+  border-left: 3px solid #ff0000;
   transition: all 0.3s;
 }
 
 .cart-item:hover {
-  background: #f0f0f0;
-  border-left-width: 4px;
+  background: rgba(255, 0, 0, 0.2);
+  border-left-width: 5px;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
 }
 
 .cart-item span {
   font-size: 14px;
   letter-spacing: 0.05em;
-  color: #000000;
+  color: #ffffff;
 }
 
 /* Формы */
@@ -522,18 +626,24 @@ body {
 .form-input {
   width: 100%;
   padding: 14px 18px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #ff0000;
   border-radius: 0;
   font-size: 14px;
   font-family: 'Inter', sans-serif;
-  transition: border-color 0.3s;
-  background: #ffffff;
+  transition: all 0.3s;
+  background: #000000;
+  color: #ffffff;
+}
+
+.form-input::placeholder {
+  color: #666666;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #000000;
-  background: #fafafa;
+  border-color: #ff0000;
+  background: #0a0a0a;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
 }
 
 /* Кнопки */
@@ -552,24 +662,31 @@ body {
 }
 
 .btn-primary {
-  background: #000000;
+  background: linear-gradient(135deg, #ff0000, #aa0000);
   color: #ffffff;
+  border: 2px solid #ff0000;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+  transition: all 0.3s;
 }
 
 .btn-primary:hover {
-  background: #ffffff;
-  color: #000000;
+  background: linear-gradient(135deg, #aa0000, #ff0000);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
 }
 
 .btn-secondary {
-  background: #ffffff;
-  color: #000000;
-  border: 2px solid #e0e0e0;
+  background: #000000;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  transition: all 0.3s;
 }
 
 .btn-secondary:hover {
-  background: #f8f8f8;
-  border-color: #000000;
+  background: linear-gradient(135deg, #ff0000, #aa0000);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
 }
 
 .button-group {
@@ -579,16 +696,19 @@ body {
 }
 
 .remove-btn {
-  background: transparent;
-  border: none;
+  background: #000000;
+  border: 1px solid #ff0000;
   cursor: pointer;
   font-size: 18px;
-  padding: 5px;
-  color: #000000;
+  padding: 5px 10px;
+  color: #ff0000;
+  transition: all 0.3s;
 }
 
 .remove-btn:hover {
-  opacity: 0.6;
+  background: linear-gradient(135deg, #ff0000, #aa0000);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
 }
 
 .hidden {
